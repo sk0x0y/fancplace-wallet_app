@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_app/components/ErrorScreen.dart';
-import 'package:wallet_app/interface/view/LoginPage.dart';
+import 'package:wallet_app/interface/view/select_language_screen.dart';
+import 'package:wallet_app/interface/view/welcome_screen.dart';
 
 class RouterService {
   static final RouterService _instance = RouterService._privateConstructor();
@@ -21,7 +22,8 @@ class RouterService {
     _goRouter = GoRouter(
       debugLogDiagnostics: kDebugMode ? true : false,
       // observers: [_logger.getObserver()],
-      initialLocation: '/login',
+      initialLocation: '/select-language',
+      // initialLocation: '/welcome',
       // (Authentication.state.isAuthentication) ? '/' : '/login',
       // refreshListenable: Authentication.state,
       errorBuilder: (context, state) {
@@ -29,8 +31,12 @@ class RouterService {
       },
       routes: [
         GoRoute(
-          path: '/login',
-          builder: (context, state) => const LoginPage(),
+          path: '/select-language',
+          builder: (context, state) => const SelectLanguageScreen(),
+        ),
+        GoRoute(
+          path: '/welcome',
+          builder: (context, state) => const WelcomeScreen(),
         ),
       ],
     );

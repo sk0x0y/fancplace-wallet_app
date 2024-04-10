@@ -21,4 +21,6 @@ class AppColors {
   // Background
   static const Color backgroundPrimary = Color(0xFF0A043C);
   static const Color backgroundSecondary = Color(0xFFF2F1F8);
+  // DropdownButton
+  static const Color dropdownButtonPrimary = Color(0xFF160D59);
 }
