@@ -66,30 +66,22 @@ class DefaultLayout extends StatelessWidget {
           )
         : null;
 
-    final titleLeader = (leader != null)
-        ? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: leader,
-          )
-        : null;
+    final titleLeader = (leader != null) ? leader : null;
 
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
       centerTitle: centerTitle ?? true,
-      title: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: (title != null)
-            ? Text(
-                title!,
-                style: TextStyle(
-                  color: AppColors.black,
-                  fontWeight: AppFonts.fontWeight600,
-                  fontSize: titleFontSize ?? 16,
-                ),
-              )
-            : customTitleWidget,
-      ),
+      title: (title != null)
+          ? Text(
+              title!,
+              style: TextStyle(
+                color: AppColors.black,
+                fontWeight: AppFonts.fontWeight600,
+                fontSize: titleFontSize ?? 16,
+              ),
+            )
+          : customTitleWidget,
       bottom: bottomWidget,
       leading: titleLeader,
       actions: [

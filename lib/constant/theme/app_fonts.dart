@@ -11,6 +11,14 @@ class AppFonts {
   static const double fontSize18 = 18.0;
   static const double fontSize20 = 20.0;
   static const double fontSize24 = 24.0;
+  static const double fontSize28 = 28.0;
+  static const double fontSize32 = 32.0;
+  static const double fontSize36 = 36.0;
+  static const double fontSize40 = 40.0;
+  static const double fontSize45 = 45.0;
+  static const double fontSize48 = 48.0;
+  static const double fontSize56 = 56.0;
+  static const double fontSize64 = 64.0;
 
   /// Line Height
   static const double lineHeight115 = 1.15;
