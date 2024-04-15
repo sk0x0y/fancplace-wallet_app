@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_app/components/ErrorScreen.dart';
+import 'package:wallet_app/interface/view/recover_words.dart';
 import 'package:wallet_app/interface/view/select_language_screen.dart';
 import 'package:wallet_app/interface/view/sign_in.dart';
 import 'package:wallet_app/interface/view/sign_up.dart';
+import 'package:wallet_app/interface/view/verify_email_screen.dart';
 import 'package:wallet_app/interface/view/welcome_screen.dart';
 
 class RouterService {
@@ -26,8 +28,10 @@ class RouterService {
       // observers: [_logger.getObserver()],
       // initialLocation: '/select-language',
       // initialLocation: '/welcome',
-      initialLocation: '/sign-up',
+      // initialLocation: '/sign-up',
       // initialLocation: '/sign-in',
+      // initialLocation: '/recover-words',
+      initialLocation: '/verify-email',
       // (Authentication.state.isAuthentication) ? '/' : '/login',
       // refreshListenable: Authentication.state,
       errorBuilder: (context, state) {
@@ -49,6 +53,14 @@ class RouterService {
         GoRoute(
           path: '/sign-in',
           builder: (context, state) => const SignIn(),
+        ),
+        GoRoute(
+          path: '/recover-words',
+          builder: (context, state) => const RecoverWords(),
+        ),
+        GoRoute(
+          path: '/verify-email',
+          builder: (context, state) => const VerifyEmailScreen(),
         ),
       ],
     );

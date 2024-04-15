@@ -5,12 +5,14 @@ import 'package:wallet_app/constant/theme/app_fonts.dart';
 class BuildSubmit extends StatelessWidget {
   final String? buttonText;
   final VoidCallback? buttonHandler;
+  final Color? buttonBackgroundColor;
   final List<Widget>? actionWidgets;
   const BuildSubmit(
     BuildContext context, {
     super.key,
     this.buttonText,
     this.buttonHandler,
+    this.buttonBackgroundColor,
     this.actionWidgets,
   });
 
@@ -20,6 +22,7 @@ class BuildSubmit extends StatelessWidget {
       context,
       buttonText: buttonText,
       buttonHandler: buttonHandler,
+      buttonBackgroundColor: buttonBackgroundColor,
       actionWidgets: actionWidgets,
     );
   }
@@ -28,6 +31,7 @@ class BuildSubmit extends StatelessWidget {
     BuildContext context, {
     String? buttonText,
     VoidCallback? buttonHandler,
+    Color? buttonBackgroundColor,
     List<Widget>? actionWidgets,
   }) {
     return Wrap(
@@ -40,7 +44,8 @@ class BuildSubmit extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(52.0),
             ),
-            backgroundColor: AppColors.backgroundPrimary,
+            backgroundColor:
+                buttonBackgroundColor ?? AppColors.backgroundPrimary,
           ),
           child: Text(
             buttonText ?? 'ButtonText',
