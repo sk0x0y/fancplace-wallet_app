@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/constant/theme/app_colors.dart';
 import 'package:wallet_app/constant/theme/app_fonts.dart';
+import 'package:wallet_app/interface/service/router_service.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
 
 // TODO: OverlayEntry 를 통한 UI 고도화
@@ -98,7 +99,9 @@ class SelectLanguageScreen extends StatelessWidget {
                 runSpacing: 30,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      RouterService.instance.router.push('/welcome');
+                    },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
                     ),

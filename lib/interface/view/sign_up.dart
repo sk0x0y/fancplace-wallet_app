@@ -398,6 +398,9 @@ class SignUp extends StatelessWidget {
                     BuildSubmit(
                       context,
                       buttonText: '확인',
+                      buttonHandler: () {
+                        RouterService.instance.router.push('/recover-words');
+                      },
                       actionWidgets: [
                         const Text(
                           '이미 회원이십니까?',
@@ -410,7 +413,7 @@ class SignUp extends StatelessWidget {
                         const SizedBox(width: 4.0),
                         TextButton(
                           onPressed: () {
-                            RouterService.instance.router.go('/sign-in');
+                            RouterService.instance.router.push('/sign-in');
                           },
                           child: const Text(
                             '로그인 하기',
