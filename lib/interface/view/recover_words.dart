@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:wallet_app/constant/theme/app_colors.dart';
 import 'package:wallet_app/constant/theme/app_fonts.dart';
 import 'package:wallet_app/constant/theme/theme_resources.dart';
+import 'package:wallet_app/interface/service/router_service.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
 
 class RecoverWords extends StatelessWidget {
@@ -168,12 +169,18 @@ class RecoverWords extends StatelessWidget {
                         ),
                         backgroundColor: AppColors.backgroundPrimary,
                       ),
-                      child: const Text(
-                        '확인',
-                        style: TextStyle(
-                          fontWeight: AppFonts.fontWeight500,
-                          fontSize: AppFonts.fontSize15,
-                          color: AppColors.white,
+                      child: TextButton(
+                        onPressed: () {
+                          RouterService.instance.router
+                              .push('/point-conversion');
+                        },
+                        child: const Text(
+                          '확인',
+                          style: TextStyle(
+                            fontWeight: AppFonts.fontWeight500,
+                            fontSize: AppFonts.fontSize15,
+                            color: AppColors.white,
+                          ),
                         ),
                       ),
                     ),

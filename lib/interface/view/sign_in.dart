@@ -90,6 +90,9 @@ class SignIn extends StatelessWidget {
                     BuildSubmit(
                       context,
                       buttonText: '다음',
+                      buttonHandler: () {
+                        RouterService.instance.router.push('/point-conversion');
+                      },
                       actionWidgets: [
                         TextButton(
                           onPressed: () {

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_app/components/ErrorScreen.dart';
+import 'package:wallet_app/interface/view/point_conversion_screen.dart';
 import 'package:wallet_app/interface/view/recover_words.dart';
 import 'package:wallet_app/interface/view/select_language_screen.dart';
 import 'package:wallet_app/interface/view/sign_in.dart';
@@ -31,7 +32,8 @@ class RouterService {
       // initialLocation: '/sign-up',
       // initialLocation: '/sign-in',
       // initialLocation: '/recover-words',
-      initialLocation: '/verify-email',
+      // initialLocation: '/verify-email',
+      initialLocation: '/point-conversion',
       // (Authentication.state.isAuthentication) ? '/' : '/login',
       // refreshListenable: Authentication.state,
       errorBuilder: (context, state) {
@@ -61,6 +63,10 @@ class RouterService {
         GoRoute(
           path: '/verify-email',
           builder: (context, state) => const VerifyEmailScreen(),
+        ),
+        GoRoute(
+          path: '/point-conversion',
+          builder: (context, state) => const PointConversionScreen(),
         ),
       ],
     );
