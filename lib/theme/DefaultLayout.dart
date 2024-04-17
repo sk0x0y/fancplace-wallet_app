@@ -4,6 +4,7 @@ import 'package:wallet_app/constant/theme/app_fonts.dart';
 
 class DefaultLayout extends StatelessWidget {
   final Color? backgroundColor;
+  final Color? appBarBackgroundColor;
   final Widget child;
   final bool useSafeArea;
   final String? title;
@@ -21,6 +22,7 @@ class DefaultLayout extends StatelessWidget {
 
   const DefaultLayout({
     this.backgroundColor,
+    this.appBarBackgroundColor,
     required this.child,
     this.useSafeArea = true,
     this.title,
@@ -42,7 +44,7 @@ class DefaultLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor ?? Colors.white,
-      appBar: renderAppBar(context),
+      appBar: renderAppBar(context, appBarBackgroundColor),
       body: useSafeArea ? SafeArea(child: child) : child,
       bottomNavigationBar: bottomNavigationBar,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset ?? true,
@@ -51,7 +53,7 @@ class DefaultLayout extends StatelessWidget {
     );
   }
 
-  AppBar? renderAppBar(BuildContext context) {
+  AppBar? renderAppBar(BuildContext context, Color? appBarBackgroundColor) {
     if (title == null && customTitleWidget == null) {
       return null;
     }
@@ -69,7 +71,7 @@ class DefaultLayout extends StatelessWidget {
     final titleLeader = (leader != null) ? leader : null;
 
     return AppBar(
-      backgroundColor: backgroundColor ?? Colors.white,
+      backgroundColor: appBarBackgroundColor ?? Colors.white,
       elevation: 0,
       centerTitle: centerTitle ?? true,
       title: (title != null)

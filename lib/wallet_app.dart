@@ -10,6 +10,7 @@ class WalletApp extends StatelessWidget {
     FlutterNativeSplash.remove();
 
     return MaterialApp.router(
+      theme: ThemeData(fontFamily: 'Pretendard'),
       routerConfig: RouterService.instance.router,
     );
   }

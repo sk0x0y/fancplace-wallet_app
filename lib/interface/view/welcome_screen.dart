@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_app/constant/theme/app_colors.dart';
-import 'package:wallet_app/constant/theme/app_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wallet_app/constant/theme/theme_resources.dart';
 import 'package:wallet_app/interface/service/router_service.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
 
@@ -17,7 +17,7 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: Image.asset('assets/logo.png'),
+              child: SvgPicture.asset('assets/welcome_logo.svg'),
             ),
             SizedBox(
               height: 208.0,
