@@ -3,6 +3,7 @@ import 'package:wallet_app/constant/theme/app_colors.dart';
 import 'package:wallet_app/constant/theme/app_fonts.dart';
 
 class BuildSubmit extends StatelessWidget {
+  final double? radius;
   final String? buttonText;
   final VoidCallback? buttonHandler;
   final Color? buttonBackgroundColor;
@@ -10,6 +11,7 @@ class BuildSubmit extends StatelessWidget {
   const BuildSubmit(
     BuildContext context, {
     super.key,
+    this.radius,
     this.buttonText,
     this.buttonHandler,
     this.buttonBackgroundColor,
@@ -20,6 +22,7 @@ class BuildSubmit extends StatelessWidget {
   Widget build(BuildContext context) {
     return buildSubmit(
       context,
+      radius: radius,
       buttonText: buttonText,
       buttonHandler: buttonHandler,
       buttonBackgroundColor: buttonBackgroundColor,
@@ -29,6 +32,7 @@ class BuildSubmit extends StatelessWidget {
 
   Widget buildSubmit(
     BuildContext context, {
+    double? radius,
     String? buttonText,
     VoidCallback? buttonHandler,
     Color? buttonBackgroundColor,
@@ -42,7 +46,7 @@ class BuildSubmit extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             minimumSize: const Size.fromHeight(56.0),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(52.0),
+              borderRadius: BorderRadius.circular(radius ?? 52.0),
             ),
             backgroundColor:
                 buttonBackgroundColor ?? AppColors.backgroundPrimary,

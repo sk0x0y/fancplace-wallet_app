@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_app/components/ErrorScreen.dart';
+import 'package:wallet_app/interface/view/linking_account_screen.dart';
 import 'package:wallet_app/interface/view/point_conversion_screen.dart';
 import 'package:wallet_app/interface/view/recover_words.dart';
+import 'package:wallet_app/interface/view/exchange_point_screen.dart';
 import 'package:wallet_app/interface/view/select_language_screen.dart';
 import 'package:wallet_app/interface/view/sign_in.dart';
 import 'package:wallet_app/interface/view/sign_up.dart';
@@ -33,7 +35,9 @@ class RouterService {
       // initialLocation: '/sign-in',
       // initialLocation: '/recover-words',
       // initialLocation: '/verify-email',
-      initialLocation: '/point-conversion',
+      // initialLocation: '/point-conversion',
+      // initialLocation: '/linking-account',
+      initialLocation: '/exchange-point',
       // (Authentication.state.isAuthentication) ? '/' : '/login',
       // refreshListenable: Authentication.state,
       errorBuilder: (context, state) {
@@ -67,6 +71,14 @@ class RouterService {
         GoRoute(
           path: '/point-conversion',
           builder: (context, state) => const PointConversionScreen(),
+        ),
+        GoRoute(
+          path: '/linking-account',
+          builder: (context, state) => const LinkingAccountScreen(),
+        ),
+        GoRoute(
+          path: '/exchange-point',
+          builder: (context, state) => const RedeemingPointScreen(),
         ),
       ],
     );
