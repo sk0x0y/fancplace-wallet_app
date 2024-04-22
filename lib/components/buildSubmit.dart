@@ -39,7 +39,8 @@ class BuildSubmit extends StatelessWidget {
     List<Widget>? actionWidgets,
   }) {
     return Wrap(
-      runSpacing: 30.0,
+      runSpacing:
+          actionWidgets != null && actionWidgets.isNotEmpty ? 30.0 : 0.0,
       children: [
         ElevatedButton(
           onPressed: buttonHandler ?? () {},

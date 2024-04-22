@@ -3,7 +3,7 @@ import 'package:wallet_app/constant/theme/theme_resources.dart';
 
 class BottomModal extends StatelessWidget {
   final double radius;
-  final double height;
+  final double? height;
   final Widget child;
   const BottomModal({
     super.key,
@@ -20,7 +20,7 @@ class BottomModal extends StatelessWidget {
   Widget buildBottomModal(
     BuildContext context,
     double radius,
-    double height,
+    double? height,
     Widget child,
   ) {
     return Container(
@@ -34,7 +34,12 @@ class BottomModal extends StatelessWidget {
             bottomRight: Radius.zero),
       ),
       width: MediaQuery.of(context).size.width,
-      child: child,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          child,
+        ],
+      ),
     );
   }
 }

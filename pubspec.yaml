@@ -47,6 +47,7 @@ dependencies:
   json_annotation: ^4.8.1
   bloc_concurrency: ^0.2.5
   flutter_svg: ^2.0.10+1
+  dotted_line: ^3.2.2
 
 dev_dependencies:
   flutter_test:
