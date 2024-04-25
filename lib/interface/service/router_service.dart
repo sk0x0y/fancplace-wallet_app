@@ -1,15 +1,21 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wallet_app/components/ErrorScreen.dart';
+import 'package:wallet_app/components/bottomNavigation.dart';
+import 'package:wallet_app/components/error_page.dart';
+import 'package:wallet_app/interface/view/assets/exchange_point_screen.dart';
+import 'package:wallet_app/interface/view/assets/point_conversion_screen.dart';
+import 'package:wallet_app/interface/view/cs/announcement_screen.dart';
 import 'package:wallet_app/interface/view/linking_account_screen.dart';
-import 'package:wallet_app/interface/view/point_conversion_screen.dart';
-import 'package:wallet_app/interface/view/recover_words.dart';
-import 'package:wallet_app/interface/view/exchange_point_screen.dart';
-import 'package:wallet_app/interface/view/select_language_screen.dart';
-import 'package:wallet_app/interface/view/sign_in.dart';
-import 'package:wallet_app/interface/view/sign_up.dart';
-import 'package:wallet_app/interface/view/verify_email_screen.dart';
-import 'package:wallet_app/interface/view/welcome_screen.dart';
+import 'package:wallet_app/interface/view/security/recover_words.dart';
+import 'package:wallet_app/interface/view/intro/select_language_screen.dart';
+import 'package:wallet_app/interface/view/security/sign_in.dart';
+import 'package:wallet_app/interface/view/security/sign_up.dart';
+import 'package:wallet_app/interface/view/intro/welcome_screen.dart';
+import 'package:wallet_app/interface/view/settings/settings_screen.dart';
+import 'package:wallet_app/interface/view/transaction/transaction_screen.dart';
+import 'package:wallet_app/interface/view/wallet/wallet_screen.dart';
+import 'package:wallet_app/theme/DefaultLayout.dart';
 
 class RouterService {
   static final RouterService _instance = RouterService._privateConstructor();
@@ -18,6 +24,9 @@ class RouterService {
 
   static RouterService get instance => _instance;
   late final GoRouter _goRouter;
+
+  final GlobalKey<NavigatorState> _rootNavigatorKey =
+      GlobalKey<NavigatorState>();
 
   GoRouter get router => _goRouter;
 
@@ -28,57 +37,109 @@ class RouterService {
   RouterService._privateConstructor() {
     _goRouter = GoRouter(
       debugLogDiagnostics: kDebugMode ? true : false,
+      navigatorKey: _rootNavigatorKey,
       // observers: [_logger.getObserver()],
-      // initialLocation: '/select-language',
-      // initialLocation: '/welcome',
-      // initialLocation: '/sign-up',
-      // initialLocation: '/sign-in',
-      // initialLocation: '/recover-words',
-      // initialLocation: '/verify-email',
-      // initialLocation: '/point-conversion',
-      // initialLocation: '/linking-account',
-      initialLocation: '/exchange-point',
+      initialLocation: kDebugMode ? '/assets/point/conversion' : '/',
       // (Authentication.state.isAuthentication) ? '/' : '/login',
       // refreshListenable: Authentication.state,
       errorBuilder: (context, state) {
-        return const ErrorScreen();
+        return const ErrorPage();
       },
       routes: [
+        StatefulShellRoute.indexedStack(
+          builder: (context, state, shell) {
+            return BottomNavigation(child: shell);
+          },
+          branches: [
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/assets/point/conversion',
+                  builder: (context, state) {
+                    return const PointConversionScreen();
+                  },
+                ),
+                GoRoute(
+                  path: '/assets/point/exchange',
+                  builder: (context, state) {
+                    return const ExchangePointScreen();
+                  },
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/wallet',
+                  builder: (context, state) {
+                    return const WalletScreen();
+                  },
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/transaction',
+                  builder: (context, state) {
+                    return const TransactionScreen();
+                  },
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/cs',
+                  builder: (context, state) {
+                    return const AnnouncementScreen();
+                  },
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/settings',
+                  builder: (context, state) {
+                    return const SettingsScreen();
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
         GoRoute(
-          path: '/select-language',
+          parentNavigatorKey: _rootNavigatorKey,
+          path: '/intro/select-language',
           builder: (context, state) => const SelectLanguageScreen(),
         ),
         GoRoute(
-          path: '/welcome',
+          parentNavigatorKey: _rootNavigatorKey,
+          path: '/intro/welcome',
           builder: (context, state) => const WelcomeScreen(),
         ),
         GoRoute(
-          path: '/sign-up',
+          parentNavigatorKey: _rootNavigatorKey,
+          path: '/sign/up',
           builder: (context, state) => const SignUp(),
         ),
         GoRoute(
-          path: '/sign-in',
+          parentNavigatorKey: _rootNavigatorKey,
+          path: '/sign/in',
           builder: (context, state) => const SignIn(),
         ),
         GoRoute(
-          path: '/recover-words',
+          path: '/security/recover-words',
           builder: (context, state) => const RecoverWords(),
-        ),
-        GoRoute(
-          path: '/verify-email',
-          builder: (context, state) => const VerifyEmailScreen(),
-        ),
-        GoRoute(
-          path: '/point-conversion',
-          builder: (context, state) => const PointConversionScreen(),
         ),
         GoRoute(
           path: '/linking-account',
           builder: (context, state) => const LinkingAccountScreen(),
         ),
         GoRoute(
-          path: '/exchange-point',
-          builder: (context, state) => const RedeemingPointScreen(),
+          path: '/something-wrong',
+          builder: (context, state) => const ErrorPage(),
         ),
       ],
     );

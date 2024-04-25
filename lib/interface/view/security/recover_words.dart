@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:wallet_app/constant/theme/app_colors.dart';
-import 'package:wallet_app/constant/theme/app_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wallet_app/constant/theme/theme_resources.dart';
 import 'package:wallet_app/interface/service/router_service.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
@@ -64,8 +61,8 @@ class RecoverWords extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 4.0),
-                      child: Image.asset(
-                        'assets/caution.png',
+                      child: SvgPicture.asset(
+                        'assets/intro/caution.svg',
                         width: 20.0,
                         height: 20.0,
                       ),
@@ -172,7 +169,7 @@ class RecoverWords extends StatelessWidget {
                       child: TextButton(
                         onPressed: () {
                           RouterService.instance.router
-                              .push('/point-conversion');
+                              .go('/assets/point/conversion');
                         },
                         child: const Text(
                           '확인',

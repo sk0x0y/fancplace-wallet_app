@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wallet_app/components/bottomNavigation.dart';
 import 'package:wallet_app/components/buildInput.dart';
 import 'package:wallet_app/components/buildSubmit.dart';
 import 'package:wallet_app/constant/theme/theme_resources.dart';
@@ -15,7 +16,8 @@ class LinkingAccountScreen extends StatelessWidget {
       leader: IconButton(
         icon: const Icon(Icons.arrow_back, color: AppColors.white),
         onPressed: () {
-          RouterService.instance.router.push('/point-conversion');
+          // RouterService.instance.router.push('/assets/conversion');
+          RouterService.instance.router.pop();
         },
       ),
       customTitleWidget: const Text(
@@ -27,6 +29,7 @@ class LinkingAccountScreen extends StatelessWidget {
         ),
       ),
       appBarBackgroundColor: AppColors.backgroundPrimary,
+      // bottomNavigationBar: const BottomNavigation(),
       child: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -52,7 +55,7 @@ class LinkingAccountScreen extends StatelessWidget {
                             child: CircleAvatar(
                               backgroundColor: AppColors.black,
                               child: SvgPicture.asset(
-                                'assets/celebe_brand_icon.svg',
+                                'assets/logo/celebe_brand_icon.svg',
                                 width: 40.0,
                                 height: 40.0,
                               ),
@@ -71,7 +74,7 @@ class LinkingAccountScreen extends StatelessWidget {
                             child: CircleAvatar(
                               backgroundColor: AppColors.black,
                               child: SvgPicture.asset(
-                                'assets/brand_icon.svg',
+                                'assets/logo/brand_icon.svg',
                                 width: 40.0,
                                 height: 40.0,
                               ),
@@ -291,7 +294,8 @@ class LinkingAccountScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 80.0),
                 BuildSubmit(context, buttonText: '확인', buttonHandler: () {
-                  RouterService.instance.router.push('/point-conversion');
+                  // RouterService.instance.router.push('/point/conversion');
+                  RouterService.instance.router.pop();
                 }),
               ],
             ),

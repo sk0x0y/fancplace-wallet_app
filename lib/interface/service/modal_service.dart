@@ -5,12 +5,16 @@ class ModalService {
   static void openBottomSheet(
     BuildContext context, {
     bool usePreventPop = false,
+    bool useRootNavigator = false,
+    String? barrierLabel,
     required double radius,
     double? height,
     required Widget child,
   }) {
     showModalBottomSheet(
       context: context,
+      useRootNavigator: useRootNavigator,
+      barrierLabel: barrierLabel,
       isScrollControlled: true,
       builder: (context) {
         return PopScope(
@@ -28,10 +32,14 @@ class ModalService {
   static void openGeneralDialog(
     BuildContext context, {
     bool usePreventPop = false,
+    bool useRootNavigator = true,
+    String? barrierLabel,
     required Widget child,
   }) {
     showGeneralDialog(
       context: context,
+      useRootNavigator: useRootNavigator,
+      barrierLabel: barrierLabel,
       pageBuilder: (context, animation, secondaryAnimation) {
         return PopScope(
           canPop: usePreventPop ? false : true,

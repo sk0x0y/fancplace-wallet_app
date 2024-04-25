@@ -13,7 +13,7 @@ class PointConversionScreen extends StatelessWidget {
       leader: IconButton(
         icon: const Icon(Icons.arrow_back, color: AppColors.white),
         onPressed: () {
-          RouterService.instance.router.push('/select-language');
+          RouterService.instance.router.push('/intro/select-language');
         },
       ),
       customTitleWidget: const Text(
@@ -47,8 +47,8 @@ class PointConversionScreen extends StatelessWidget {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       spacing: 8.0,
                       children: [
-                        SvgPicture.asset('assets/brand_icon.svg'),
-                        SvgPicture.asset('assets/brand_text.svg'),
+                        SvgPicture.asset('assets/logo/brand_icon.svg'),
+                        SvgPicture.asset('assets/logo/brand_text.svg'),
                       ],
                     ),
                     const SizedBox(height: 14.0),
@@ -178,7 +178,7 @@ class PointConversionScreen extends StatelessWidget {
                                               spacing: 8.0,
                                               children: [
                                                 SvgPicture.asset(
-                                                  'assets/celebe_brand_icon.svg',
+                                                  'assets/logo/celebe_brand_icon.svg',
                                                   width: 40.0,
                                                   height: 40.0,
                                                 ),
@@ -231,61 +231,70 @@ class PointConversionScreen extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 return Column(
                                   children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFF110A4D),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      padding: const EdgeInsets.all(16.0),
-                                      width: MediaQuery.of(context).size.width,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Wrap(
-                                            crossAxisAlignment:
-                                                WrapCrossAlignment.center,
-                                            spacing: 8.0,
-                                            children: [
-                                              SvgPicture.asset(
-                                                'assets/fanc_brand_icon.svg',
-                                                width: 40.0,
-                                                height: 40.0,
-                                              ),
-                                              const Text(
-                                                "FANC",
-                                                style: TextStyle(
-                                                  fontWeight:
-                                                      AppFonts.fontWeight500,
-                                                  fontSize: AppFonts.fontSize14,
-                                                  color: AppColors.white,
+                                    GestureDetector(
+                                      onTap: () {
+                                        RouterService.instance.router
+                                            .push('/assets/point/exchange');
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFF110A4D),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        padding: const EdgeInsets.all(16.0),
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Wrap(
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.center,
+                                              spacing: 8.0,
+                                              children: [
+                                                SvgPicture.asset(
+                                                  'assets/logo/fanc_brand_icon.svg',
+                                                  width: 40.0,
+                                                  height: 40.0,
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                          const Wrap(
-                                            crossAxisAlignment:
-                                                WrapCrossAlignment.center,
-                                            spacing: 10.0,
-                                            children: [
-                                              Text(
-                                                "1,400 FANC",
-                                                style: TextStyle(
-                                                  fontWeight:
-                                                      AppFonts.fontWeight500,
-                                                  fontSize: AppFonts.fontSize16,
-                                                  color: AppColors.white,
+                                                const Text(
+                                                  "FANC",
+                                                  style: TextStyle(
+                                                    fontWeight:
+                                                        AppFonts.fontWeight500,
+                                                    fontSize:
+                                                        AppFonts.fontSize14,
+                                                    color: AppColors.white,
+                                                  ),
                                                 ),
-                                              ),
-                                              Icon(
-                                                Icons.arrow_forward_ios,
-                                                color: Color(0xFF84819D),
-                                                size: 12.0,
-                                              ),
-                                            ],
-                                          )
-                                        ],
+                                              ],
+                                            ),
+                                            const Wrap(
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.center,
+                                              spacing: 10.0,
+                                              children: [
+                                                Text(
+                                                  "1,400 FANC",
+                                                  style: TextStyle(
+                                                    fontWeight:
+                                                        AppFonts.fontWeight500,
+                                                    fontSize:
+                                                        AppFonts.fontSize16,
+                                                    color: AppColors.white,
+                                                  ),
+                                                ),
+                                                Icon(
+                                                  Icons.arrow_forward_ios,
+                                                  color: Color(0xFF84819D),
+                                                  size: 12.0,
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     const SizedBox(height: 16.0)

@@ -43,7 +43,13 @@ class SelectLanguageScreen extends StatelessWidget {
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
-                        icon: Image.asset('assets/arrow_down.png'),
+                        icon: SvgPicture.asset(
+                          'assets/intro/arrow_down.svg',
+                          colorFilter: const ColorFilter.mode(
+                            Color(0xFFB2E5F5),
+                            BlendMode.srcIn,
+                          ),
+                        ),
                         value: 'ko',
                         selectedItemBuilder: (context) {
                           return const [
@@ -100,7 +106,7 @@ class SelectLanguageScreen extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      RouterService.instance.router.push('/welcome');
+                      RouterService.instance.router.push('/intro/welcome');
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),

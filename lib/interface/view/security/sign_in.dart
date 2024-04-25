@@ -91,12 +91,13 @@ class SignIn extends StatelessWidget {
                       context,
                       buttonText: '다음',
                       buttonHandler: () {
-                        RouterService.instance.router.push('/point-conversion');
+                        RouterService.instance.router
+                            .go('/assets/point/conversion');
                       },
                       actionWidgets: [
                         TextButton(
                           onPressed: () {
-                            RouterService.instance.router.push('/sign-up');
+                            RouterService.instance.router.push('/sign/up');
                           },
                           child: const Text(
                             '새 지갑 생성하기',

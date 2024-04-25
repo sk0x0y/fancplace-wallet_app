@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wallet_app/components/buildInput.dart';
 import 'package:wallet_app/components/buildSubmit.dart';
 import 'package:wallet_app/constant/theme/app_colors.dart';
@@ -54,9 +55,12 @@ class SignUp extends StatelessWidget {
                           child: DropdownButton(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 16.0),
-                            icon: Image.asset(
-                              'assets/arrow_down.png',
-                              color: const Color(0xFF0A043C),
+                            icon: SvgPicture.asset(
+                              'assets/intro/arrow_down.svg',
+                              colorFilter: const ColorFilter.mode(
+                                AppColors.backgroundPrimary,
+                                BlendMode.srcIn,
+                              ),
                             ),
                             value: 'ko',
                             selectedItemBuilder: (context) {
@@ -399,7 +403,8 @@ class SignUp extends StatelessWidget {
                       context,
                       buttonText: '확인',
                       buttonHandler: () {
-                        RouterService.instance.router.push('/recover-words');
+                        RouterService.instance.router
+                            .go('/security/recover-words');
                       },
                       actionWidgets: [
                         const Text(
@@ -413,7 +418,7 @@ class SignUp extends StatelessWidget {
                         const SizedBox(width: 4.0),
                         TextButton(
                           onPressed: () {
-                            RouterService.instance.router.push('/sign-in');
+                            RouterService.instance.router.push('/sign/in');
                           },
                           child: const Text(
                             '로그인 하기',

@@ -17,7 +17,7 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: SvgPicture.asset('assets/welcome_logo.svg'),
+              child: SvgPicture.asset('assets/logo/welcome_logo.svg'),
             ),
             SizedBox(
               height: 208.0,
@@ -28,7 +28,7 @@ class WelcomeScreen extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      RouterService.instance.router.push('/sign-up');
+                      RouterService.instance.router.push('/sign/up');
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
@@ -44,7 +44,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      RouterService.instance.router.push('/sign-in');
+                      RouterService.instance.router.push('/sign/in');
                     },
                     child: const Text(
                       'Already have a wallet?',

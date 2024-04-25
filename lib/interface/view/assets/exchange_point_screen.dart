@@ -1,16 +1,17 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wallet_app/components/bottomNavigation.dart';
 import 'package:wallet_app/components/buildPointCard.dart';
 import 'package:wallet_app/components/buildSubmit.dart';
-import 'package:wallet_app/interface/view/verify_page.dart';
+import 'package:wallet_app/components/verify_page.dart';
 import 'package:wallet_app/interface/service/modal_service.dart';
 import 'package:wallet_app/constant/theme/theme_resources.dart';
 import 'package:wallet_app/interface/service/router_service.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
 
-class RedeemingPointScreen extends StatelessWidget {
-  const RedeemingPointScreen({super.key});
+class ExchangePointScreen extends StatelessWidget {
+  const ExchangePointScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,8 @@ class RedeemingPointScreen extends StatelessWidget {
       leader: IconButton(
         icon: const Icon(Icons.arrow_back, color: AppColors.white),
         onPressed: () {
-          RouterService.instance.router.push('/linking-account');
+          // RouterService.instance.router.push('/linking-account');
+          RouterService.instance.router.pop();
         },
       ),
       customTitleWidget: const Text(
@@ -54,6 +56,7 @@ class RedeemingPointScreen extends StatelessWidget {
                       buttonHandler: () {
                         ModalService.openBottomSheet(
                           context,
+                          useRootNavigator: true,
                           radius: 40.0,
                           child: buildExchangeBottomSheet(context),
                         );
@@ -238,8 +241,8 @@ class RedeemingPointScreen extends StatelessWidget {
               buttonBackgroundColor: AppColors.buttonPrimary,
               buttonText: '완료',
               buttonHandler: () {
-                // RouterService.instance.router.go('/point-conversion');
-                Navigator.of(context).popUntil((route) => route.isFirst);
+                Navigator.of(context, rootNavigator: true)
+                    .popUntil((route) => route.isFirst);
               },
             ),
           ],
@@ -249,46 +252,44 @@ class RedeemingPointScreen extends StatelessWidget {
   }
 
   Widget buildVerifyAuthenticationCode(BuildContext context) {
-    return DefaultLayout(
-      backgroundColor: AppColors.backgroundPrimary,
-      child: VerifyPage(
-        title: '인증 코드',
-        message: '가입된 이메일로 인증번호를 전송하였습니다.\n전환을 완료하기 위해 인증이 필요합니다.',
-        childWidgets: [
-          const SizedBox(height: 90.0),
-          Wrap(
-            crossAxisAlignment: WrapCrossAlignment.center,
-            spacing: 10.0,
-            children: [
-              const Text(
-                '인증 이메일을 받지 못하셨나요?',
+    return VerifyPage(
+      title: '인증 코드',
+      message: '가입된 이메일로 인증번호를 전송하였습니다.\n전환을 완료하기 위해 인증이 필요합니다.',
+      childWidgets: [
+        const SizedBox(height: 90.0),
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 10.0,
+          children: [
+            const Text(
+              '인증 이메일을 받지 못하셨나요?',
+              style: TextStyle(
+                fontWeight: AppFonts.fontWeight400,
+                fontSize: AppFonts.fontSize14,
+                color: AppColors.textSecondary,
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                ModalService.openGeneralDialog(
+                  context,
+                  usePreventPop: true,
+                  useRootNavigator: true,
+                  child: buildExchangeResult(context),
+                );
+              },
+              child: const Text(
+                '인증 메일 재전송',
                 style: TextStyle(
                   fontWeight: AppFonts.fontWeight400,
                   fontSize: AppFonts.fontSize14,
-                  color: AppColors.textSecondary,
+                  color: AppColors.textPrimary,
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  ModalService.openGeneralDialog(
-                    context,
-                    usePreventPop: true,
-                    child: buildExchangeResult(context),
-                  );
-                },
-                child: const Text(
-                  '인증 메일 재전송',
-                  style: TextStyle(
-                    fontWeight: AppFonts.fontWeight400,
-                    fontSize: AppFonts.fontSize14,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
@@ -475,6 +476,7 @@ class RedeemingPointScreen extends StatelessWidget {
             buttonHandler: () {
               ModalService.openGeneralDialog(
                 context,
+                useRootNavigator: true,
                 child: buildVerifyAuthenticationCode(context),
               );
             },
@@ -649,7 +651,7 @@ class RedeemingPointScreen extends StatelessWidget {
                     spacing: 10.0,
                     children: [
                       SvgPicture.asset(
-                        'assets/brand_icon.svg',
+                        'assets/logo/brand_icon.svg',
                         width: 30.0,
                         height: 30.0,
                       ),
@@ -716,7 +718,7 @@ class RedeemingPointScreen extends StatelessWidget {
                     spacing: 10.0,
                     children: [
                       SvgPicture.asset(
-                        'assets/fanc_brand_icon.svg',
+                        'assets/logo/fanc_brand_icon.svg',
                         width: 30.0,
                         height: 30.0,
                       ),
