@@ -13,6 +13,7 @@ class AppFonts {
   static const double fontSize20 = 20.0;
   static const double fontSize24 = 24.0;
   static const double fontSize28 = 28.0;
+  static const double fontSize30 = 30.0;
   static const double fontSize32 = 32.0;
   static const double fontSize36 = 36.0;
   static const double fontSize40 = 40.0;

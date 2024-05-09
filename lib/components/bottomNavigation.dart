@@ -23,7 +23,7 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation>
     with SingleTickerProviderStateMixin {
-  int _currentIndex = 0;
+  late int _currentIndex;
   late List<BottomNavigationBarItem> _navItems;
   late List<Widget> _pages;
 
@@ -31,6 +31,9 @@ class _BottomNavigationState extends State<BottomNavigation>
   void initState() {
     super.initState();
 
+    setState(() {
+      _currentIndex = widget.child.currentIndex;
+    });
     _navItems = [
       BottomNavigationBarItem(
         icon: SizedBox(
@@ -138,6 +141,23 @@ class _BottomNavigationState extends State<BottomNavigation>
   }
 
   @override
+  didUpdateWidget(BottomNavigation oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.child.currentIndex != _currentIndex) {
+      setState(() {
+        _currentIndex = widget.child.currentIndex;
+      });
+    }
+
+    if (oldWidget.child != widget.child) {
+      setState(() {
+        _currentIndex = widget.child.currentIndex;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: widget.key,
@@ -165,7 +185,30 @@ class _BottomNavigationState extends State<BottomNavigation>
                   _currentIndex = index;
                 });
 
-                return widget.child.goBranch(index);
+                switch (index) {
+                  case 0:
+                    RouterService.instance.router
+                        .go('/assets/point/conversion');
+                    break;
+
+                  case 1:
+                    RouterService.instance.router.go('/wallet');
+                    break;
+
+                  case 2:
+                    RouterService.instance.router.go('/transaction');
+                    break;
+
+                  case 3:
+                    RouterService.instance.router.go('/cs');
+                    break;
+
+                  case 4:
+                    RouterService.instance.router.go('/settings');
+                    break;
+                }
+
+                // return widget.child.goBranch(index);
               },
               currentIndex: _currentIndex,
               items: _navItems,

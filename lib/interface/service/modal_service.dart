@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/components/modal/bottom_modal.dart';
+import 'package:wallet_app/components/modal/pin_code_authentication_modal.dart';
 
 class ModalService {
   static void openBottomSheet(
@@ -16,6 +17,12 @@ class ModalService {
       useRootNavigator: useRootNavigator,
       barrierLabel: barrierLabel,
       isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(radius),
+          topRight: Radius.circular(radius),
+        ),
+      ),
       builder: (context) {
         return PopScope(
           canPop: usePreventPop ? false : true,
@@ -60,6 +67,16 @@ class ModalService {
           child: child,
         );
       },
+    );
+  }
+
+  static void openPinCodeAuthenticationModal(
+    BuildContext context, {
+    Function(String pin)? onCompletedHandler,
+  }) {
+    openGeneralDialog(
+      context,
+      child: PinCodeAuthenticationModal(onCompletedHandler: onCompletedHandler),
     );
   }
 }

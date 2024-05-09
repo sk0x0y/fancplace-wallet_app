@@ -14,8 +14,8 @@ import 'package:wallet_app/interface/view/security/sign_up.dart';
 import 'package:wallet_app/interface/view/intro/welcome_screen.dart';
 import 'package:wallet_app/interface/view/settings/settings_screen.dart';
 import 'package:wallet_app/interface/view/transaction/transaction_screen.dart';
+import 'package:wallet_app/interface/view/wallet/transaction_history_page.dart';
 import 'package:wallet_app/interface/view/wallet/wallet_screen.dart';
-import 'package:wallet_app/theme/DefaultLayout.dart';
 
 class RouterService {
   static final RouterService _instance = RouterService._privateConstructor();
@@ -26,6 +26,10 @@ class RouterService {
   late final GoRouter _goRouter;
 
   final GlobalKey<NavigatorState> _rootNavigatorKey =
+      GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> _pointNavigatorKey =
+      GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> _walletNavigatorKey =
       GlobalKey<NavigatorState>();
 
   GoRouter get router => _goRouter;
@@ -39,19 +43,25 @@ class RouterService {
       debugLogDiagnostics: kDebugMode ? true : false,
       navigatorKey: _rootNavigatorKey,
       // observers: [_logger.getObserver()],
-      initialLocation: kDebugMode ? '/assets/point/conversion' : '/',
+      initialLocation: kDebugMode ? '/wallet/transaction-history' : '/',
       // (Authentication.state.isAuthentication) ? '/' : '/login',
       // refreshListenable: Authentication.state,
       errorBuilder: (context, state) {
-        return const ErrorPage();
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          context.go('/something-wrong');
+        });
+
+        return const SizedBox.shrink();
       },
       routes: [
         StatefulShellRoute.indexedStack(
-          builder: (context, state, shell) {
-            return BottomNavigation(child: shell);
+          parentNavigatorKey: _rootNavigatorKey,
+          builder: (context, state, navigationShell) {
+            return BottomNavigation(child: navigationShell);
           },
           branches: [
             StatefulShellBranch(
+              // navigatorKey: _pointNavigatorKey,
               routes: [
                 GoRoute(
                   path: '/assets/point/conversion',
@@ -68,12 +78,21 @@ class RouterService {
               ],
             ),
             StatefulShellBranch(
+              // navigatorKey: _walletNavigatorKey,
               routes: [
                 GoRoute(
                   path: '/wallet',
                   builder: (context, state) {
                     return const WalletScreen();
                   },
+                  routes: [
+                    GoRoute(
+                      path: 'transaction-history',
+                      builder: (context, state) {
+                        return const TransactionHistoryPage();
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -138,6 +157,7 @@ class RouterService {
           builder: (context, state) => const LinkingAccountScreen(),
         ),
         GoRoute(
+          parentNavigatorKey: _rootNavigatorKey,
           path: '/something-wrong',
           builder: (context, state) => const ErrorPage(),
         ),

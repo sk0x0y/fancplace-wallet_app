@@ -49,6 +49,15 @@ dependencies:
   flutter_svg: ^2.0.10+1
   dotted_line: ^3.2.2
   animations: ^2.0.11
+  carousel_slider: ^4.2.1
+  camera: ^0.10.5+9
+  mobile_scanner: ^5.1.0
+  wakelock_plus: ^1.2.5
+  share_plus: ^9.0.0
+  flutter_launcher_icons: ^0.13.1
+  pinput: ^4.0.0
+  vibration: ^1.8.4
+  sentry_flutter: ^8.1.0
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +90,9 @@ flutter:
     - assets/intro/
     - assets/bottom_navigation/
     - assets/logo/
+    - assets/carousel/
+    - assets/wallet/
+    - assets/cs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

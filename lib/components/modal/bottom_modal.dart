@@ -24,16 +24,17 @@ class BottomModal extends StatelessWidget {
     Widget child,
   ) {
     return Container(
+      width: MediaQuery.of(context).size.width,
       height: height,
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(radius),
-            topRight: Radius.circular(radius),
-            bottomLeft: Radius.zero,
-            bottomRight: Radius.zero),
+          topLeft: Radius.circular(radius),
+          topRight: Radius.circular(radius),
+          bottomLeft: Radius.zero,
+          bottomRight: Radius.zero,
+        ),
       ),
-      width: MediaQuery.of(context).size.width,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
