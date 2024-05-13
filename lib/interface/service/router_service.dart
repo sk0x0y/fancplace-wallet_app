@@ -43,7 +43,7 @@ class RouterService {
       debugLogDiagnostics: kDebugMode ? true : false,
       navigatorKey: _rootNavigatorKey,
       // observers: [_logger.getObserver()],
-      initialLocation: kDebugMode ? '/wallet/transaction-history' : '/',
+      initialLocation: kDebugMode ? '/transaction' : '/',
       // (Authentication.state.isAuthentication) ? '/' : '/login',
       // refreshListenable: Authentication.state,
       errorBuilder: (context, state) {
