@@ -58,6 +58,7 @@ dependencies:
   pinput: ^4.0.0
   vibration: ^1.8.4
   sentry_flutter: ^8.1.0
+  webview_flutter: ^4.7.0
 
 dev_dependencies:
   flutter_test:
