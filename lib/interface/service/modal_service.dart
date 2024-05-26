@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/components/modal/bottom_modal.dart';
 import 'package:wallet_app/components/modal/pin_code_authentication_modal.dart';
+import 'package:wallet_app/components/modal/recover_private_key_modal.dart';
 
 class ModalService {
   static void openBottomSheet(
@@ -77,6 +78,11 @@ class ModalService {
     openGeneralDialog(
       context,
       child: PinCodeAuthenticationModal(onCompletedHandler: onCompletedHandler),
+
+  static void openRecoverPrivateKeyModal(BuildContext context) {
+    openGeneralDialog(
+      context,
+      child: const RecoverPrivateKeyModal(),
     );
   }
 }
