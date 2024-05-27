@@ -6,12 +6,16 @@ import 'package:wallet_app/components/error_page.dart';
 import 'package:wallet_app/interface/view/assets/exchange_point_screen.dart';
 import 'package:wallet_app/interface/view/assets/point_conversion_screen.dart';
 import 'package:wallet_app/interface/view/cs/announcement_screen.dart';
+import 'package:wallet_app/interface/view/intro/select_language_screen.dart';
+import 'package:wallet_app/interface/view/intro/welcome_screen.dart';
 import 'package:wallet_app/interface/view/linking_account_screen.dart';
 import 'package:wallet_app/interface/view/security/recover_words.dart';
-import 'package:wallet_app/interface/view/intro/select_language_screen.dart';
 import 'package:wallet_app/interface/view/security/sign_in.dart';
 import 'package:wallet_app/interface/view/security/sign_up.dart';
-import 'package:wallet_app/interface/view/intro/welcome_screen.dart';
+import 'package:wallet_app/interface/view/settings/policy_screen.dart';
+import 'package:wallet_app/interface/view/settings/profile/change_password_page.dart';
+import 'package:wallet_app/interface/view/settings/profile_screen.dart';
+import 'package:wallet_app/interface/view/settings/security_screen.dart';
 import 'package:wallet_app/interface/view/settings/settings_screen.dart';
 import 'package:wallet_app/interface/view/transaction/transaction_screen.dart';
 import 'package:wallet_app/interface/view/wallet/transaction_history_page.dart';
@@ -43,7 +47,7 @@ class RouterService {
       debugLogDiagnostics: kDebugMode ? true : false,
       navigatorKey: _rootNavigatorKey,
       // observers: [_logger.getObserver()],
-      initialLocation: kDebugMode ? '/cs' : '/',
+      initialLocation: kDebugMode ? '/settings' : '/',
       // (Authentication.state.isAuthentication) ? '/' : '/login',
       // refreshListenable: Authentication.state,
       errorBuilder: (context, state) {
@@ -123,6 +127,40 @@ class RouterService {
                   builder: (context, state) {
                     return const SettingsScreen();
                   },
+                  routes: [
+                    GoRoute(
+                      path: 'profile',
+                      builder: (context, state) {
+                        return const ProfileScreen();
+                      },
+                      routes: [
+                        GoRoute(
+                          path: 'change-password',
+                          builder: (context, state) {
+                            return const ChangePasswordPage();
+                          },
+                        ),
+                      ],
+                    ),
+                    GoRoute(
+                      path: 'security',
+                      builder: (context, state) {
+                        return const SecurityScreen();
+                      },
+                    ),
+                    GoRoute(
+                      path: 'faq',
+                      builder: (context, state) {
+                        return const Text('FAQ Page');
+                      },
+                    ),
+                    GoRoute(
+                      path: 'policy',
+                      builder: (context, state) {
+                        return const PolicyScreen();
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),

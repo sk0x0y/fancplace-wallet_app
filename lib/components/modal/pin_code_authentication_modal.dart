@@ -1,14 +1,27 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
-import 'package:wallet_app/components/buildSubmit.dart';
-import 'package:wallet_app/interface/service/router_service.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
 
 class PinCodeAuthenticationModal extends StatefulWidget {
+  final Color? leaderColor;
+  final Color? appBarBackgroundColor;
+  final Color? backgroundColor;
+  final Color? keyPadBackgroundColor;
+  final Color? keyPadTextColor;
+  final String title;
+  final Widget? labelWidget;
+  final Widget? hintWidget;
   final Function(String pin)? onCompletedHandler;
   const PinCodeAuthenticationModal({
     super.key,
+    this.leaderColor,
+    this.appBarBackgroundColor,
+    this.backgroundColor,
+    this.keyPadBackgroundColor,
+    this.keyPadTextColor,
+    this.title = 'PIN 번호 입력',
+    this.labelWidget,
+    this.hintWidget,
     this.onCompletedHandler,
   });
 
@@ -24,20 +37,22 @@ class _PinCodeAuthenticationModalState
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      leader: const BackButton(color: Colors.white),
-      customTitleWidget: const Text(
-        'FANC',
-        style: TextStyle(
+      leader: BackButton(color: widget.leaderColor ?? Colors.white),
+      customTitleWidget: Text(
+        widget.title,
+        style: const TextStyle(
           fontWeight: FontWeight.w900,
           fontSize: 18.0,
           color: Colors.white,
         ),
       ),
-      appBarBackgroundColor: const Color(0xFF0A043C),
-      backgroundColor: const Color(0xFF0A043C),
+      appBarBackgroundColor:
+          widget.appBarBackgroundColor ?? const Color(0xFF0A043C),
+      backgroundColor: widget.backgroundColor ?? const Color(0xFF0A043C),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          widget.labelWidget ?? const SizedBox(),
           _buildPinCodeInput(context),
           const SizedBox(height: 100.0),
           _buildKeyPad(),
@@ -79,15 +94,15 @@ class _PinCodeAuthenticationModalState
         style: ElevatedButton.styleFrom(
           elevation: 0.0,
           minimumSize: const Size.fromHeight(100.0),
-          backgroundColor: Colors.transparent,
+          backgroundColor: widget.backgroundColor ?? Colors.transparent,
           shape: const RoundedRectangleBorder(
             side: BorderSide(color: Colors.transparent, width: 0.0),
           ),
         ),
         child: Text(
           key.toString(),
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: widget.keyPadTextColor ?? Colors.white,
             fontSize: 24.0,
             fontWeight: FontWeight.w500,
           ),
@@ -151,25 +166,7 @@ class _PinCodeAuthenticationModalState
           ),
         ),
         const SizedBox(height: 60.0),
-        TextButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            elevation: 0.0,
-            backgroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50.0),
-              side: const BorderSide(width: 0.0),
-            ),
-          ),
-          child: const Text(
-            'PIN 번호를 잊으셨나요?',
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 14.0,
-              color: Color(0xFFFDA325),
-            ),
-          ),
-        )
+        widget.hintWidget ?? const SizedBox(),
       ],
     );
   }
