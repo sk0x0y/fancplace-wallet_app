@@ -439,6 +439,26 @@ class TransactionHistoryPage extends StatelessWidget {
                   buttonHandler: () {
                     ModalService.openPinCodeAuthenticationModal(
                       context,
+                      title: 'FANC',
+                      hintWidget: TextButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0.0,
+                          backgroundColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                            side: const BorderSide(width: 0.0),
+                          ),
+                        ),
+                        child: const Text(
+                          'PIN 번호를 잊으셨나요?',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14.0,
+                            color: Color(0xFFFDA325),
+                          ),
+                        ),
+                      ),
                       onCompletedHandler: (pin) {
                         ModalService.openGeneralDialog(
                           context,
