@@ -30,7 +30,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "io.fanc.wallet.wallet_app"
+    namespace "io.fanc.wallet"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
