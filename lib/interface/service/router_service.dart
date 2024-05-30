@@ -47,7 +47,7 @@ class RouterService {
       debugLogDiagnostics: kDebugMode ? true : false,
       navigatorKey: _rootNavigatorKey,
       // observers: [_logger.getObserver()],
-      initialLocation: kDebugMode ? '/settings' : '/',
+      initialLocation: kDebugMode ? '/settings' : '/intro/select-language',
       // (Authentication.state.isAuthentication) ? '/' : '/login',
       // refreshListenable: Authentication.state,
       errorBuilder: (context, state) {
