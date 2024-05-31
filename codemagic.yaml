@@ -14,7 +14,35 @@ workflows:
         PACKAGE_NAME: "io.fanc.wallet"
         GOOGLE_PLAY_TRACK: "internal"
       flutter: 3.19.6
+    triggering:
+      branch_patterns:
+        - pattern: 'develop'
+          include: true
+          source: true
+      events:
+        - pull_request
+        - push
+        - tag
+      cancel_previous_builds: true
+    when:
+      condition: not event.pull_request.draft
+      changeset:
+        excludes:
+          - '**/*.md'
     scripts:
+      - name: Check Build Proceed Condition
+        script: |
+          set -e
+          set -x
+          export COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo COMMIT_MSG
+          if [[ $COMMIT_MSG != *"buildcd"* ]]
+            then
+              echo "Commit message does not contain 'buildcd'. Exiting."
+              exit 1
+            else 
+              echo "Commit message contains 'buildcd'. Starting build."
+          fi
       - name: Set up local.properties
         script: |
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
@@ -43,9 +71,9 @@ workflows:
       email:
         recipients:
           - ysy@fancplace.io
-#          - fisher@fancplace.io
-#          - fanc.dev@fancplace.io
-#          - fancplace@gmail.com
+          # - fisher@fancplace.io
+          # - fanc.dev@fancplace.io
+          # - fancplace@gmail.com
         notify:
           success: true
           failure: true
@@ -157,5 +185,3 @@ workflows:
 #      email:
 #        recipients:
 #          - user_1@example.com
-
-
