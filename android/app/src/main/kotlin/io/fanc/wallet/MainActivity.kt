@@ -1,4 +1,4 @@
-package io.fanc.wallet.wallet_app
+package io.fanc.wallet
 
 import io.flutter.embedding.android.FlutterActivity
 
