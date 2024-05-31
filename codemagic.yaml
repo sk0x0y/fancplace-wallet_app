@@ -21,6 +21,7 @@ workflows:
           source: true
       events:
         - pull_request
+        - push
         - tag
       cancel_previous_builds: true
     when:
@@ -29,7 +30,7 @@ workflows:
         excludes:
           - '**/*.md'
     scripts:
-      - name: Check commit message
+      - name: Check Build Proceed Condition
         script: |
           set -e
           set -x
@@ -37,10 +38,10 @@ workflows:
           echo COMMIT_MSG
           if [[ $COMMIT_MSG != *"buildcd"* ]]
             then
-              echo "커밋 메세지에 'buildcd'가 포함되어 있지 않습니다."
+              echo "Commit message does not contain 'buildcd'. Exiting."
               exit 1
             else 
-              echo "커밋 메세지에 'buildcd'가 포함되어 있습니다. 빌드를 시작합니다."
+              echo "Commit message contains 'buildcd'. Starting build."
           fi
       - name: Set up local.properties
         script: |
@@ -183,6 +184,10 @@ workflows:
 #    publishing:
 #      email:
 #        recipients:
+<<<<<<< HEAD
+#          - user_1@example.com
+=======
 #          - user_1@example.com
 
 
+>>>>>>> develop
