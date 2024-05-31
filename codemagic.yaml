@@ -184,4 +184,10 @@ workflows:
 #    publishing:
 #      email:
 #        recipients:
+<<<<<<< HEAD
 #          - user_1@example.com
+=======
+#          - user_1@example.com
+
+
+>>>>>>> develop
