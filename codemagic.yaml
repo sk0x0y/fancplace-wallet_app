@@ -70,9 +70,9 @@ workflows:
       email:
         recipients:
           - ysy@fancplace.io
-#          - fisher@fancplace.io
-#          - fanc.dev@fancplace.io
-#          - fancplace@gmail.com
+          # - fisher@fancplace.io
+          # - fanc.dev@fancplace.io
+          # - fancplace@gmail.com
         notify:
           success: true
           failure: true
