@@ -1,17 +1,16 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wallet_app/components/bottomNavigation.dart';
 import 'package:wallet_app/components/buildPointCard.dart';
 import 'package:wallet_app/components/buildSubmit.dart';
 import 'package:wallet_app/components/verify_page.dart';
-import 'package:wallet_app/interface/service/modal_service.dart';
 import 'package:wallet_app/constant/theme/theme_resources.dart';
+import 'package:wallet_app/interface/service/modal_service.dart';
 import 'package:wallet_app/interface/service/router_service.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
 
-class ExchangePointScreen extends StatelessWidget {
-  const ExchangePointScreen({super.key});
+class ExchangePointPage extends StatelessWidget {
+  const ExchangePointPage({super.key});
 
   @override
   Widget build(BuildContext context) {

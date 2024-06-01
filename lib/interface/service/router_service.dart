@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_app/components/bottomNavigation.dart';
 import 'package:wallet_app/components/error_page.dart';
-import 'package:wallet_app/interface/view/assets/exchange_point_screen.dart';
-import 'package:wallet_app/interface/view/assets/point_conversion_screen.dart';
 import 'package:wallet_app/interface/view/cs/announcement_screen.dart';
+import 'package:wallet_app/interface/view/exchange/exchange_point_page.dart';
+import 'package:wallet_app/interface/view/exchange/exchange_screen.dart';
 import 'package:wallet_app/interface/view/intro/select_language_screen.dart';
 import 'package:wallet_app/interface/view/intro/welcome_screen.dart';
 import 'package:wallet_app/interface/view/linking_account_screen.dart';
@@ -68,15 +68,15 @@ class RouterService {
               // navigatorKey: _pointNavigatorKey,
               routes: [
                 GoRoute(
-                  path: '/assets/point/conversion',
+                  path: '/exchange',
                   builder: (context, state) {
-                    return const PointConversionScreen();
+                    return const ExchangeScreen();
                   },
                 ),
                 GoRoute(
-                  path: '/assets/point/exchange',
+                  path: '/exchange/point',
                   builder: (context, state) {
-                    return const ExchangePointScreen();
+                    return const ExchangePointPage();
                   },
                 ),
               ],

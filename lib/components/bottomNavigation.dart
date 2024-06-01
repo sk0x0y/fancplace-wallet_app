@@ -3,12 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_app/constant/theme/theme_resources.dart';
 import 'package:wallet_app/interface/service/router_service.dart';
-import 'package:wallet_app/interface/view/assets/point_conversion_screen.dart';
 import 'package:wallet_app/interface/view/cs/announcement_screen.dart';
+import 'package:wallet_app/interface/view/exchange/exchange_screen.dart';
 import 'package:wallet_app/interface/view/settings/settings_screen.dart';
 import 'package:wallet_app/interface/view/transaction/transaction_screen.dart';
 import 'package:wallet_app/interface/view/wallet/wallet_screen.dart';
-import 'package:wallet_app/theme/DefaultLayout.dart';
 
 class BottomNavigation extends StatefulWidget {
   final StatefulNavigationShell child;
@@ -132,7 +131,7 @@ class _BottomNavigationState extends State<BottomNavigation>
       ),
     ];
     _pages = [
-      const PointConversionScreen(),
+      const ExchangeScreen(),
       const WalletScreen(),
       const TransactionScreen(),
       const AnnouncementScreen(),
@@ -187,8 +186,7 @@ class _BottomNavigationState extends State<BottomNavigation>
 
                 switch (index) {
                   case 0:
-                    RouterService.instance.router
-                        .go('/assets/point/conversion');
+                    RouterService.instance.router.go('/exchange');
                     break;
 
                   case 1:

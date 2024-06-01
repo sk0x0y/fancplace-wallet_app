@@ -4,8 +4,8 @@ import 'package:wallet_app/constant/theme/theme_resources.dart';
 import 'package:wallet_app/interface/service/router_service.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
 
-class PointConversionScreen extends StatelessWidget {
-  const PointConversionScreen({super.key});
+class ExchangeScreen extends StatelessWidget {
+  const ExchangeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -245,7 +245,7 @@ class PointConversionScreen extends StatelessWidget {
                                       child: GestureDetector(
                                         onTap: () {
                                           RouterService.instance.router
-                                              .push('/assets/point/exchange');
+                                              .push('/exchange/point');
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
