@@ -60,6 +60,7 @@ dependencies:
   sentry_flutter: ^8.1.0
   webview_flutter: ^4.7.0
   icons_plus: ^5.0.0
+  flutter_widget_from_html: ^0.15.0
 
 dev_dependencies:
   flutter_test:
