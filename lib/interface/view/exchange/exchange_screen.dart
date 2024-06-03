@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wallet_app/components/buildSubmit.dart';
 import 'package:wallet_app/constant/theme/theme_resources.dart';
 import 'package:wallet_app/interface/service/modal_service.dart';
 import 'package:wallet_app/interface/service/router_service.dart';
@@ -197,8 +198,8 @@ class ExchangeScreen extends StatelessWidget {
                                       ),
                                       child: GestureDetector(
                                         onTap: () {
-                                          RouterService.instance.router
-                                              .push('/linking-account');
+                                          RouterService.instance.router.push(
+                                              '/exchange/linking-account');
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
