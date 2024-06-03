@@ -86,7 +86,9 @@ class SettingsScreen extends StatelessWidget {
             _buildSettingsItem(
               title: '자주 하는 질문',
               icon: Bootstrap.chat_dots_fill,
-              onTap: () {},
+              onTap: () {
+                RouterService.instance.router.push('/settings/faq');
+              },
             ),
             _buildSettingsItem(
               title: '이용약관 및 정책',

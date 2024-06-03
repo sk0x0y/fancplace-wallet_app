@@ -12,6 +12,7 @@ import 'package:wallet_app/interface/view/intro/welcome_screen.dart';
 import 'package:wallet_app/interface/view/security/recover_words.dart';
 import 'package:wallet_app/interface/view/security/sign_in.dart';
 import 'package:wallet_app/interface/view/security/sign_up.dart';
+import 'package:wallet_app/interface/view/settings/faq_screen.dart';
 import 'package:wallet_app/interface/view/settings/policy_screen.dart';
 import 'package:wallet_app/interface/view/settings/profile/change_password_page.dart';
 import 'package:wallet_app/interface/view/settings/profile_screen.dart';
@@ -155,7 +156,7 @@ class RouterService {
                     GoRoute(
                       path: 'faq',
                       builder: (context, state) {
-                        return const Text('FAQ Page');
+                        return const FaqScreen();
                       },
                     ),
                     GoRoute(
