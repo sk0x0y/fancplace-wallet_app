@@ -1,6 +1,6 @@
 workflows:
-  android-workflow:
-    name: Android Workflow
+  android-workflow-internal:
+    name: Android Workflow (Internal Track)
     instance_type: mac_mini_m1
     max_build_duration: 120
     environment:
@@ -36,12 +36,12 @@ workflows:
           set -x
           export COMMIT_MSG=$(git log -1 --pretty=%B)
           echo COMMIT_MSG
-          if [[ $COMMIT_MSG != *"buildcd"* ]]
+          if [[ $COMMIT_MSG == *"[skip-ci]"* ]]
             then
-              echo "Commit message does not contain 'buildcd'. Exiting."
+              echo "Commit message contains '[skip-ci]'. Exiting."
               exit 1
-            else 
-              echo "Commit message contains 'buildcd'. Starting build."
+            else
+              echo "Commit message does not contain '[skip-ci]'. Starting build."
           fi
       - name: Set up local.properties
         script: |
@@ -71,9 +71,9 @@ workflows:
       email:
         recipients:
           - ysy@fancplace.io
-          # - fisher@fancplace.io
-          # - fanc.dev@fancplace.io
-          # - fancplace@gmail.com
+          - fisher@fancplace.io
+          - fanc.dev@fancplace.io
+          - fancplace@gmail.com
         notify:
           success: true
           failure: true
@@ -184,10 +184,4 @@ workflows:
 #    publishing:
 #      email:
 #        recipients:
-<<<<<<< HEAD
 #          - user_1@example.com
-=======
-#          - user_1@example.com
-
-
->>>>>>> develop
