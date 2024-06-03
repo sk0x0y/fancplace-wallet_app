@@ -168,8 +168,7 @@ class RecoverWords extends StatelessWidget {
                       ),
                       child: TextButton(
                         onPressed: () {
-                          RouterService.instance.router
-                              .go('/assets/point/conversion');
+                          RouterService.instance.router.go('/exchange');
                         },
                         child: const Text(
                           '확인',

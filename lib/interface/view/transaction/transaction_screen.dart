@@ -17,7 +17,7 @@ class TransactionScreen extends StatelessWidget {
       leader: IconButton(
         icon: const Icon(Icons.arrow_back, color: AppColors.white),
         onPressed: () {
-          RouterService.instance.router.go('/assets/point/conversion');
+          RouterService.instance.router.go('/exchange');
         },
       ),
       customTitleWidget: const Text(
