@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wallet_app/components/buildSubmit.dart';
 import 'package:wallet_app/constant/theme/theme_resources.dart';
+import 'package:wallet_app/interface/service/modal_service.dart';
 import 'package:wallet_app/interface/service/router_service.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
 
-class PointConversionScreen extends StatelessWidget {
-  const PointConversionScreen({super.key});
+class ExchangeScreen extends StatelessWidget {
+  const ExchangeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      leader: IconButton(
-        icon: const Icon(Icons.arrow_back, color: AppColors.white),
+      leader: BackButton(
         onPressed: () {
           RouterService.instance.router.push('/intro/select-language');
         },
+        color: AppColors.white,
       ),
       customTitleWidget: const Text(
         '포인트 전환',
@@ -72,42 +74,75 @@ class PointConversionScreen extends StatelessWidget {
                         direction: Axis.horizontal,
                         children: [
                           Expanded(
-                            child: Center(
-                              child: Wrap(
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: [
-                                  SvgPicture.asset(
-                                      'assets/point_conversion_history_icon.svg'),
-                                  const Text(
-                                    '전환 내역',
-                                    style: TextStyle(
-                                      fontWeight: AppFonts.fontWeight400,
-                                      fontSize: AppFonts.fontSize14,
-                                      color: AppColors.white,
+                            child: GestureDetector(
+                              onTap: () {
+                                ModalService.openTransactionHistoryModal(
+                                    context,
+                                    title: '전환 내역', onTap: () {
+                                  ModalService.openBottomSheet(
+                                    context,
+                                    useRootNavigator: true,
+                                    height: 433.0,
+                                    radius: 40.0,
+                                    child: _buildDetailModal(context),
+                                  );
+                                });
+                              },
+                              child: Center(
+                                child: Wrap(
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  spacing: 10.0,
+                                  children: [
+                                    SvgPicture.asset(
+                                      'assets/point_conversion_history_icon.svg',
                                     ),
-                                  ),
-                                ],
+                                    const Text(
+                                      '전환 내역',
+                                      style: TextStyle(
+                                        fontWeight: AppFonts.fontWeight400,
+                                        fontSize: AppFonts.fontSize14,
+                                        color: AppColors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                           Expanded(
-                            child: Center(
-                              child: Wrap(
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: [
-                                  SvgPicture.asset(
-                                      'assets/reward_history_icon.svg'),
-                                  const Text(
-                                    '전환 내역',
-                                    style: TextStyle(
-                                      fontWeight: AppFonts.fontWeight400,
-                                      fontSize: AppFonts.fontSize14,
-                                      color: AppColors.white,
+                            child: GestureDetector(
+                              onTap: () {
+                                ModalService.openTransactionHistoryModal(
+                                  context,
+                                  title: '리워드 내역',
+                                  onTap: () {
+                                    ModalService.openBottomSheet(
+                                      context,
+                                      useRootNavigator: true,
+                                      height: 433.0,
+                                      radius: 40.0,
+                                      child: _buildDetailModal(context),
+                                    );
+                                  },
+                                );
+                              },
+                              child: Center(
+                                child: Wrap(
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  spacing: 10.0,
+                                  children: [
+                                    SvgPicture.asset(
+                                        'assets/reward_history_icon.svg'),
+                                    const Text(
+                                      '리워드 내역',
+                                      style: TextStyle(
+                                        fontWeight: AppFonts.fontWeight400,
+                                        fontSize: AppFonts.fontSize14,
+                                        color: AppColors.white,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -163,8 +198,8 @@ class PointConversionScreen extends StatelessWidget {
                                       ),
                                       child: GestureDetector(
                                         onTap: () {
-                                          RouterService.instance.router
-                                              .push('/linking-account');
+                                          RouterService.instance.router.push(
+                                              '/exchange/linking-account');
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -245,7 +280,7 @@ class PointConversionScreen extends StatelessWidget {
                                       child: GestureDetector(
                                         onTap: () {
                                           RouterService.instance.router
-                                              .push('/assets/point/exchange');
+                                              .push('/exchange/point');
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -324,6 +359,166 @@ class PointConversionScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildDetailModal(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 50.0,
+        horizontal: 32.0,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            '보내기',
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 15.0,
+              color: Color(0xFF523EE8),
+            ),
+          ),
+          const Text(
+            '팬시 (FANC)',
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 25.0,
+              color: Color(0xFF0A043C),
+            ),
+          ),
+          const Text(
+            '2022.11.19 16:00',
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 15.0,
+              color: Color(0xFF84819D),
+            ),
+          ),
+          const SizedBox(height: 32.0),
+          const Wrap(
+            runSpacing: 10.0,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '보낸 수량',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15.0,
+                      color: Color(0xFF84819D),
+                    ),
+                  ),
+                  Text(
+                    '-153.02',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15.0,
+                      color: Color(0xFF0A043C),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '받는 주소',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15.0,
+                      color: Color(0xFF84819D),
+                    ),
+                  ),
+                  Text(
+                    '0x379is…qu4we1g',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15.0,
+                      color: Color(0xFF0A043C),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '네트워크 수수료',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15.0,
+                      color: Color(0xFF84819D),
+                    ),
+                  ),
+                  Text(
+                    '0.01 ETH',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15.0,
+                      color: Color(0xFF0A043C),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '상태',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15.0,
+                      color: Color(0xFF84819D),
+                    ),
+                  ),
+                  Text(
+                    '완료',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15.0,
+                      color: Color(0xFF0A043C),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 32.0),
+          BuildSubmit(
+            context,
+            customWidget: ElevatedButton(
+              // onPressed: () {
+              //   ModalService.openGeneralDialog(
+              //     context,
+              //     child: _buildQRModal(context),
+              //   );
+              // },
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                side: const BorderSide(
+                  color: Color(0xFF523EE8),
+                ),
+                minimumSize: const Size.fromHeight(56.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(52.0),
+                ),
+                backgroundColor: const Color(0xFFF2F1F8),
+              ),
+              child: const Text(
+                '트랜잭션 탐색기에서 보기',
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15.0,
+                  color: Color(0xFF523EE8),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

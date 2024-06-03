@@ -1,17 +1,17 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wallet_app/components/bottomNavigation.dart';
+import 'package:pinput/pinput.dart';
 import 'package:wallet_app/components/buildPointCard.dart';
 import 'package:wallet_app/components/buildSubmit.dart';
 import 'package:wallet_app/components/verify_page.dart';
-import 'package:wallet_app/interface/service/modal_service.dart';
 import 'package:wallet_app/constant/theme/theme_resources.dart';
+import 'package:wallet_app/interface/service/modal_service.dart';
 import 'package:wallet_app/interface/service/router_service.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
 
-class ExchangePointScreen extends StatelessWidget {
-  const ExchangePointScreen({super.key});
+class ExchangePointPage extends StatelessWidget {
+  const ExchangePointPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class ExchangePointScreen extends StatelessWidget {
                           context,
                           useRootNavigator: true,
                           radius: 40.0,
-                          child: buildExchangeBottomSheet(context),
+                          child: _buildExchangeBottomSheet(context),
                         );
                       },
                     ),
@@ -72,7 +72,7 @@ class ExchangePointScreen extends StatelessWidget {
     );
   }
 
-  Widget buildExchangeResult(BuildContext context) {
+  Widget _buildExchangeResult(BuildContext context) {
     return DefaultLayout(
       leader: const SizedBox(),
       appBarBackgroundColor: AppColors.backgroundPrimary,
@@ -251,12 +251,29 @@ class ExchangePointScreen extends StatelessWidget {
     );
   }
 
-  Widget buildVerifyAuthenticationCode(BuildContext context) {
+  Widget _buildVerifyAuthenticationCode(BuildContext context) {
     return VerifyPage(
       title: '인증 코드',
       message: '가입된 이메일로 인증번호를 전송하였습니다.\n전환을 완료하기 위해 인증이 필요합니다.',
       childWidgets: [
-        const SizedBox(height: 90.0),
+        const SizedBox(height: 56.0),
+        Pinput(
+          length: 4,
+          defaultPinTheme: PinTheme(
+            width: 56.0,
+            height: 56.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: const Color(0xFF1F1952),
+            ),
+            textStyle: const TextStyle(
+              fontWeight: AppFonts.fontWeight500,
+              fontSize: 24.0,
+              color: AppColors.white,
+            ),
+          ),
+        ),
+        const SizedBox(height: 86.0),
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
           spacing: 10.0,
@@ -275,7 +292,7 @@ class ExchangePointScreen extends StatelessWidget {
                   context,
                   usePreventPop: true,
                   useRootNavigator: true,
-                  child: buildExchangeResult(context),
+                  child: _buildExchangeResult(context),
                 );
               },
               child: const Text(
@@ -293,7 +310,7 @@ class ExchangePointScreen extends StatelessWidget {
     );
   }
 
-  Widget buildExchangeBottomSheet(BuildContext context) {
+  Widget _buildExchangeBottomSheet(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 50.0,
@@ -312,8 +329,7 @@ class ExchangePointScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32.0),
-          Wrap(
-            runSpacing: 12.0,
+          Column(
             children: [
               Container(
                 padding: const EdgeInsets.all(20.0),
@@ -386,6 +402,7 @@ class ExchangePointScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(height: 12.0),
               Container(
                 padding: const EdgeInsets.all(20.0),
                 decoration: BoxDecoration(
@@ -395,15 +412,11 @@ class ExchangePointScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Wrap(
-                      direction: Axis.vertical,
-                      spacing: 10.0,
-                      children: [
-                        Container(
-                          constraints: const BoxConstraints(
-                            maxWidth: 300.0,
-                          ),
-                          child: const Text(
+                    const Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
                             '포인트를 전환하고 ETH를 지급 받겠습니다.',
                             style: TextStyle(
                               fontWeight: AppFonts.fontWeight500,
@@ -411,27 +424,29 @@ class ExchangePointScreen extends StatelessWidget {
                               color: AppColors.textBlack,
                             ),
                           ),
-                        ),
-                        const Text.rich(
-                          TextSpan(
-                            text: '24,000 P > ',
-                            style: TextStyle(
-                              fontWeight: AppFonts.fontWeight500,
-                              fontSize: AppFonts.fontSize15,
-                              color: AppColors.textSecondary,
-                            ),
-                            children: [
-                              TextSpan(
-                                text: '717 FANC',
-                                style: TextStyle(
-                                  color: AppColors.textPrimary,
-                                ),
+                          SizedBox(height: 10.0),
+                          Text.rich(
+                            TextSpan(
+                              text: '24,000 P > ',
+                              style: TextStyle(
+                                fontWeight: AppFonts.fontWeight500,
+                                fontSize: AppFonts.fontSize15,
+                                color: AppColors.textSecondary,
                               ),
-                            ],
+                              children: [
+                                TextSpan(
+                                  text: '717 FANC',
+                                  style: TextStyle(
+                                    color: AppColors.textPrimary,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
+                    const SizedBox(width: 32.0),
                     SizedBox(
                       width: 30.0,
                       child: Checkbox(
@@ -458,15 +473,16 @@ class ExchangePointScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const Text(
-                '* ETH는 FANC를 외부 지갑으로 전송 시 사용됩니다.',
-                style: TextStyle(
-                  fontWeight: AppFonts.fontWeight400,
-                  fontSize: AppFonts.fontSize13,
-                  color: AppColors.textSecondary,
-                ),
-              ),
             ],
+          ),
+          const SizedBox(height: 12.0),
+          const Text(
+            '* ETH는 FANC를 외부 지갑으로 전송 시 사용됩니다.',
+            style: TextStyle(
+              fontWeight: AppFonts.fontWeight400,
+              fontSize: AppFonts.fontSize13,
+              color: AppColors.textSecondary,
+            ),
           ),
           const SizedBox(height: 32.0),
           BuildSubmit(
@@ -477,7 +493,7 @@ class ExchangePointScreen extends StatelessWidget {
               ModalService.openGeneralDialog(
                 context,
                 useRootNavigator: true,
-                child: buildVerifyAuthenticationCode(context),
+                child: _buildVerifyAuthenticationCode(context),
               );
             },
           ),
@@ -597,19 +613,21 @@ class ExchangePointScreen extends StatelessWidget {
               ),
             ),
             currency: TextFormField(
+              cursorColor: const Color(0xFF0A043C),
+              textAlign: TextAlign.right,
               decoration: const InputDecoration(
                 hintText: '0',
                 hintStyle: TextStyle(
-                  fontWeight: AppFonts.fontWeight500,
-                  fontSize: AppFonts.fontSize16,
-                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 28.0,
+                  color: Color(0xFFC1C0CE),
                 ),
                 border: InputBorder.none,
               ),
               style: const TextStyle(
-                fontWeight: AppFonts.fontWeight500,
-                fontSize: AppFonts.fontSize16,
-                color: AppColors.textPrimary,
+                fontWeight: FontWeight.w700,
+                fontSize: 28.0,
+                color: Color(0xFF0A043C),
               ),
             ),
             actions: const [

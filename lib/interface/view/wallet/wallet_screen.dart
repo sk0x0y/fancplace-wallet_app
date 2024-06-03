@@ -1,11 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wallet_app/constant/theme/theme_resources.dart';
 import 'package:wallet_app/interface/service/router_service.dart';
-import 'package:wallet_app/interface/view/assets/point_conversion_screen.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
 
 class WalletScreen extends StatelessWidget {
@@ -16,7 +12,7 @@ class WalletScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultLayout(
       leader: IconButton(
-        icon: const Icon(Icons.arrow_back, color: AppColors.white),
+        icon: const Icon(Icons.arrow_back, color: Colors.white),
         onPressed: () {
           RouterService.instance.router.go('/assets/point/conversion');
         },
@@ -24,13 +20,13 @@ class WalletScreen extends StatelessWidget {
       customTitleWidget: const Text(
         '내 지갑',
         style: TextStyle(
-          fontWeight: AppFonts.fontWeight900,
-          fontSize: AppFonts.fontSize18,
-          color: AppColors.white,
+          fontWeight: FontWeight.w900,
+          fontSize: 18.0,
+          color: Colors.white,
         ),
       ),
-      appBarBackgroundColor: AppColors.backgroundPrimary,
-      backgroundColor: AppColors.backgroundPrimary,
+      appBarBackgroundColor: const Color(0xFF0A043C),
+      backgroundColor: const Color(0xFF0A043C),
       child: Padding(
         padding: const EdgeInsets.only(top: 34.0),
         child: Column(
@@ -49,17 +45,17 @@ class WalletScreen extends StatelessWidget {
                   const Text(
                     '공지사항입니다. 공지를 확인해라.',
                     style: TextStyle(
-                      fontWeight: AppFonts.fontWeight400,
-                      fontSize: AppFonts.fontSize15,
-                      color: AppColors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15.0,
+                      color: Colors.white,
                     ),
                   ),
                   const Expanded(child: SizedBox()),
                   const Text(
                     '22.11.10',
                     style: TextStyle(
-                      fontWeight: AppFonts.fontWeight400,
-                      fontSize: AppFonts.fontSize13,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 13.0,
                       color: Color(0xFF84819D),
                     ),
                   ),
@@ -88,13 +84,12 @@ class WalletScreen extends StatelessWidget {
             children: [
               const TabBar(
                 labelStyle: TextStyle(
-                  fontWeight: AppFonts.fontWeight700,
-                  fontSize: AppFonts.fontSize15,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15.0,
                   color: Colors.white,
                 ),
                 indicator: UnderlineTabIndicator(
-                  borderSide:
-                      BorderSide(width: 4.0, color: AppColors.brandPrimary),
+                  borderSide: BorderSide(width: 4.0, color: Color(0xFF523EE8)),
                   borderRadius: BorderRadius.zero,
                 ),
                 unselectedLabelColor: Color(0xFF84819D),
@@ -113,23 +108,24 @@ class WalletScreen extends StatelessWidget {
                     const Text(
                       '보유자산',
                       style: TextStyle(
-                        fontWeight: AppFonts.fontWeight400,
-                        fontSize: AppFonts.fontSize15,
-                        color: AppColors.textSecondary,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 15.0,
+                        color: Color(0xFF84819D),
                       ),
                     ),
                     const SizedBox(width: 14.0),
                     Switch(
                       value: true,
                       onChanged: (value) {},
-                      activeColor: AppColors.brandPrimary,
-                      activeTrackColor: AppColors.brandPrimary.withOpacity(0.5),
+                      activeColor: const Color(0xFF523EE8),
+                      activeTrackColor:
+                          const Color(0xFF523EE8).withOpacity(0.5),
                     ),
                     const Expanded(child: SizedBox()),
                     IconButton(
                       icon: const Icon(
                         Icons.refresh_outlined,
-                        color: AppColors.textSecondary,
+                        color: Color(0xFF84819D),
                       ),
                       onPressed: () {},
                     ),
@@ -177,10 +173,9 @@ class WalletScreen extends StatelessWidget {
                                           const Text(
                                             "셀러비 포인트",
                                             style: TextStyle(
-                                              fontWeight:
-                                                  AppFonts.fontWeight500,
-                                              fontSize: AppFonts.fontSize14,
-                                              color: AppColors.white,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 14.0,
+                                              color: Colors.white,
                                             ),
                                           ),
                                         ],
@@ -193,10 +188,9 @@ class WalletScreen extends StatelessWidget {
                                           Text(
                                             "1,400 P",
                                             style: TextStyle(
-                                              fontWeight:
-                                                  AppFonts.fontWeight500,
-                                              fontSize: AppFonts.fontSize16,
-                                              color: AppColors.white,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16.0,
+                                              color: Colors.white,
                                             ),
                                           ),
                                           Icon(
@@ -257,11 +251,9 @@ class WalletScreen extends StatelessWidget {
                                                 const Text(
                                                   "FANC",
                                                   style: TextStyle(
-                                                    fontWeight:
-                                                        AppFonts.fontWeight500,
-                                                    fontSize:
-                                                        AppFonts.fontSize14,
-                                                    color: AppColors.white,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 14.0,
+                                                    color: Colors.white,
                                                   ),
                                                 ),
                                               ],
@@ -274,11 +266,9 @@ class WalletScreen extends StatelessWidget {
                                                 Text(
                                                   "1,400 FANC",
                                                   style: TextStyle(
-                                                    fontWeight:
-                                                        AppFonts.fontWeight500,
-                                                    fontSize:
-                                                        AppFonts.fontSize16,
-                                                    color: AppColors.white,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 16.0,
+                                                    color: Colors.white,
                                                   ),
                                                 ),
                                                 Icon(
@@ -307,18 +297,18 @@ class WalletScreen extends StatelessWidget {
                               const Text(
                                 "NFT를 보유하고 있지 않습니다.",
                                 style: TextStyle(
-                                  fontWeight: AppFonts.fontWeight500,
-                                  fontSize: AppFonts.fontSize18,
-                                  color: AppColors.textSecondary,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18.0,
+                                  color: Color(0xFF84819D),
                                 ),
                               ),
                               const SizedBox(height: 12.0),
                               const Text(
                                 "NFT를 구매하거나 보유하고 계신지 확인해주세요.",
                                 style: TextStyle(
-                                  fontWeight: AppFonts.fontWeight400,
-                                  fontSize: AppFonts.fontSize14,
-                                  color: AppColors.textSecondary,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14.0,
+                                  color: Color(0xFF84819D),
                                 ),
                               ),
                             ],
@@ -346,14 +336,14 @@ class WalletScreen extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(15.0),
           child: Image.network(
-            'https://placehold.co/345x150/${AppColors.backgroundTertiary.value.toRadixString(16).padLeft(2, '0').toString().substring(2)}/black/png?text=Hello+World!&font=source-sans-pro',
+            'https://placehold.co/345x150/${const Color(0xFF221D4F).value.toRadixString(16).padLeft(2, '0').toString().substring(2)}/black/png?text=Hello+World!&font=source-sans-pro',
             fit: BoxFit.cover,
           ),
         ),
         ClipRRect(
           borderRadius: BorderRadius.circular(15.0),
           child: Image.network(
-            'https://placehold.co/345x150/${AppColors.buttonPrimary.value.toRadixString(16).padLeft(2, '0').toString().substring(2)}/black/png?text=Test Slide\nImage 3&font=source-sans-pro',
+            'https://placehold.co/345x150/${const Color(0xFF523EE8).value.toRadixString(16).padLeft(2, '0').toString().substring(2)}/black/png?text=Test Slide\nImage 3&font=source-sans-pro',
             fit: BoxFit.cover,
           ),
         ),

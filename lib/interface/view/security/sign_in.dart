@@ -91,8 +91,7 @@ class SignIn extends StatelessWidget {
                       context,
                       buttonText: '다음',
                       buttonHandler: () {
-                        RouterService.instance.router
-                            .go('/assets/point/conversion');
+                        RouterService.instance.router.go('/exchange');
                       },
                       actionWidgets: [
                         TextButton(
