@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/components/modal/bottom_modal.dart';
 import 'package:wallet_app/components/modal/pin_code_authentication_modal.dart';
 import 'package:wallet_app/components/modal/recover_private_key_modal.dart';
+import 'package:wallet_app/components/modal/transaction_history_modal.dart';
 
 class ModalService {
   static void openBottomSheet(
@@ -103,6 +104,23 @@ class ModalService {
     openGeneralDialog(
       context,
       child: const RecoverPrivateKeyModal(),
+    );
+  }
+
+  static void openTransactionHistoryModal(
+    BuildContext context, {
+    required String title,
+    VoidCallback? onTap,
+  }) {
+    showGeneralDialog(
+      context: context,
+      useRootNavigator: false,
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return TransactionHistoryModal(
+          title: title,
+          onTap: onTap,
+        );
+      },
     );
   }
 }

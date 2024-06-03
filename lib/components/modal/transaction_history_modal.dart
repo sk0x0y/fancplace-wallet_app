@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wallet_app/components/buildSubmit.dart';
-import 'package:wallet_app/constant/theme/theme_resources.dart';
-import 'package:wallet_app/interface/service/modal_service.dart';
 import 'package:wallet_app/interface/service/router_service.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
 
-class TransactionScreen extends StatelessWidget {
-  const TransactionScreen({super.key});
+class TransactionHistoryModal extends StatelessWidget {
+  final String title;
+  final VoidCallback? onTap;
+  const TransactionHistoryModal({
+    super.key,
+    required this.title,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,21 +18,21 @@ class TransactionScreen extends StatelessWidget {
 
     return DefaultLayout(
       leader: IconButton(
-        icon: const Icon(Icons.arrow_back, color: AppColors.white),
+        icon: const Icon(Icons.arrow_back, color: Colors.white),
         onPressed: () {
-          RouterService.instance.router.go('/exchange');
+          RouterService.instance.router.pop();
         },
       ),
-      customTitleWidget: const Text(
-        '토큰 전송 내역',
-        style: TextStyle(
-          fontWeight: AppFonts.fontWeight900,
-          fontSize: AppFonts.fontSize18,
-          color: AppColors.white,
+      customTitleWidget: Text(
+        title,
+        style: const TextStyle(
+          fontWeight: FontWeight.w900,
+          fontSize: 18.0,
+          color: Colors.white,
         ),
       ),
-      appBarBackgroundColor: AppColors.backgroundPrimary,
-      backgroundColor: AppColors.backgroundPrimary,
+      appBarBackgroundColor: const Color(0xFF0A043C),
+      backgroundColor: const Color(0xFF0A043C),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: showEmpty
@@ -94,15 +97,7 @@ class TransactionScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           behavior: HitTestBehavior.opaque,
-                          onTap: () {
-                            ModalService.openBottomSheet(
-                              context,
-                              useRootNavigator: true,
-                              height: 412.0,
-                              radius: 40.0,
-                              child: _buildDetailModal(context),
-                            );
-                          },
+                          onTap: onTap,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 18.0),
                             child: Row(
@@ -184,166 +179,6 @@ class TransactionScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDetailModal(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 50.0,
-        horizontal: 32.0,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            '보내기',
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 15.0,
-              color: AppColors.textPrimary,
-            ),
-          ),
-          const Text(
-            '팬시 (FANC)',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 25.0,
-              color: AppColors.textBlack,
-            ),
-          ),
-          const Text(
-            '2022.11.19 16:00',
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 15.0,
-              color: AppColors.textSecondary,
-            ),
-          ),
-          const SizedBox(height: 32.0),
-          const Wrap(
-            runSpacing: 10.0,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '보낸 수량',
-                    style: TextStyle(
-                      fontWeight: AppFonts.fontWeight400,
-                      fontSize: AppFonts.fontSize15,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                  Text(
-                    '-153.02',
-                    style: TextStyle(
-                      fontWeight: AppFonts.fontWeight500,
-                      fontSize: AppFonts.fontSize15,
-                      color: AppColors.textBlack,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '받는 주소',
-                    style: TextStyle(
-                      fontWeight: AppFonts.fontWeight400,
-                      fontSize: AppFonts.fontSize15,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                  Text(
-                    '0x379is…qu4we1g',
-                    style: TextStyle(
-                      fontWeight: AppFonts.fontWeight500,
-                      fontSize: AppFonts.fontSize15,
-                      color: AppColors.textBlack,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '네트워크 수수료',
-                    style: TextStyle(
-                      fontWeight: AppFonts.fontWeight400,
-                      fontSize: AppFonts.fontSize15,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                  Text(
-                    '0.01 ETH',
-                    style: TextStyle(
-                      fontWeight: AppFonts.fontWeight500,
-                      fontSize: AppFonts.fontSize15,
-                      color: AppColors.textBlack,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '상태',
-                    style: TextStyle(
-                      fontWeight: AppFonts.fontWeight400,
-                      fontSize: AppFonts.fontSize15,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                  Text(
-                    '완료',
-                    style: TextStyle(
-                      fontWeight: AppFonts.fontWeight500,
-                      fontSize: AppFonts.fontSize15,
-                      color: AppColors.textBlack,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 32.0),
-          BuildSubmit(
-            context,
-            customWidget: ElevatedButton(
-              // onPressed: () {
-              //   ModalService.openGeneralDialog(
-              //     context,
-              //     child: _buildQRModal(context),
-              //   );
-              // },
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                side: const BorderSide(
-                  color: AppColors.borderPrimary,
-                ),
-                minimumSize: const Size.fromHeight(56.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(52.0),
-                ),
-                backgroundColor: const Color(0xFFF2F1F8),
-              ),
-              child: const Text(
-                '트랜잭션 탐색기에서 보기',
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15.0,
-                  color: AppColors.textPrimary,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildDropdown(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -368,8 +203,8 @@ class TransactionScreen extends StatelessWidget {
                 child: Text(
                   '전체 자산',
                   style: TextStyle(
-                    fontWeight: AppFonts.fontWeight400,
-                    fontSize: AppFonts.fontSize15,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15.0,
                     color: Color(0xFFB2E5F5),
                   ),
                 ),
@@ -383,8 +218,8 @@ class TransactionScreen extends StatelessWidget {
               child: Text(
                 '전체 자산',
                 style: TextStyle(
-                  fontWeight: AppFonts.fontWeight400,
-                  fontSize: AppFonts.fontSize15,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 15.0,
                   color: Color(0xFFB2E5F5),
                 ),
               ),
@@ -394,8 +229,8 @@ class TransactionScreen extends StatelessWidget {
               child: Text(
                 '이더리움',
                 style: TextStyle(
-                  fontWeight: AppFonts.fontWeight400,
-                  fontSize: AppFonts.fontSize15,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 15.0,
                   color: Color(0xFFB2E5F5),
                 ),
               ),
@@ -405,8 +240,8 @@ class TransactionScreen extends StatelessWidget {
               child: Text(
                 '팬시',
                 style: TextStyle(
-                  fontWeight: AppFonts.fontWeight400,
-                  fontSize: AppFonts.fontSize15,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 15.0,
                   color: Color(0xFFB2E5F5),
                 ),
               ),

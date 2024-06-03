@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wallet_app/components/bottomNavigation.dart';
 import 'package:wallet_app/components/buildInput.dart';
 import 'package:wallet_app/components/buildSubmit.dart';
 import 'package:wallet_app/constant/theme/theme_resources.dart';
 import 'package:wallet_app/interface/service/router_service.dart';
 import 'package:wallet_app/theme/DefaultLayout.dart';
 
-class LinkingAccountScreen extends StatelessWidget {
-  const LinkingAccountScreen({super.key});
+class LinkingAccountPage extends StatelessWidget {
+  const LinkingAccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      leader: IconButton(
-        icon: const Icon(Icons.arrow_back, color: AppColors.white),
+      leader: BackButton(
         onPressed: () {
-          // RouterService.instance.router.push('/assets/conversion');
           RouterService.instance.router.pop();
         },
+        color: Colors.white,
       ),
       customTitleWidget: const Text(
         '계정 연동',
@@ -29,11 +27,15 @@ class LinkingAccountScreen extends StatelessWidget {
         ),
       ),
       appBarBackgroundColor: AppColors.backgroundPrimary,
-      // bottomNavigationBar: const BottomNavigation(),
       child: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+            padding: const EdgeInsets.only(
+              left: 24.0,
+              right: 24.0,
+              top: 32.0,
+              bottom: 42.0,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -46,8 +48,7 @@ class LinkingAccountScreen extends StatelessWidget {
                         PhysicalModel(
                           shape: BoxShape.circle,
                           elevation: 5.0,
-                          shadowColor:
-                              const Color(0xFF0A043C26).withOpacity(0.3),
+                          shadowColor: const Color(0xFF0A043C).withOpacity(0.3),
                           color: AppColors.white,
                           child: SizedBox(
                             width: 66.0,
@@ -65,8 +66,7 @@ class LinkingAccountScreen extends StatelessWidget {
                         PhysicalModel(
                           shape: BoxShape.circle,
                           elevation: 5.0,
-                          shadowColor:
-                              const Color(0xFF0A043C26).withOpacity(0.3),
+                          shadowColor: const Color(0xFF0A043C).withOpacity(0.3),
                           color: AppColors.white,
                           child: SizedBox(
                             width: 66.0,
