@@ -77,16 +77,17 @@ class ExchangeScreen extends StatelessWidget {
                             child: GestureDetector(
                               onTap: () {
                                 ModalService.openTransactionHistoryModal(
-                                    context,
-                                    title: '전환 내역', onTap: () {
-                                  ModalService.openBottomSheet(
-                                    context,
-                                    useRootNavigator: true,
-                                    height: 433.0,
-                                    radius: 40.0,
-                                    child: _buildDetailModal(context),
-                                  );
-                                });
+                                  context,
+                                  title: '전환 내역',
+                                  onTap: () {
+                                    ModalService.openBottomSheet(
+                                      context,
+                                      useRootNavigator: true,
+                                      radius: 40.0,
+                                      child: _buildDetailModal(context),
+                                    );
+                                  },
+                                );
                               },
                               child: Center(
                                 child: Wrap(
@@ -119,7 +120,6 @@ class ExchangeScreen extends StatelessWidget {
                                     ModalService.openBottomSheet(
                                       context,
                                       useRootNavigator: true,
-                                      height: 433.0,
                                       radius: 40.0,
                                       child: _buildDetailModal(context),
                                     );
