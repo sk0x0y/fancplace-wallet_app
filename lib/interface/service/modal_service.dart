@@ -42,7 +42,7 @@ class ModalService {
     BuildContext context, {
     bool usePreventPop = false,
     bool useRootNavigator = true,
-    bool barrierDismissible = true,
+    bool? barrierDismissible,
     String? barrierLabel,
     required Widget child,
   }) {
@@ -50,7 +50,7 @@ class ModalService {
       context: context,
       useRootNavigator: useRootNavigator,
       barrierLabel: barrierLabel,
-      barrierDismissible: barrierDismissible,
+      barrierDismissible: barrierDismissible ?? false,
       pageBuilder: (context, animation, secondaryAnimation) {
         return PopScope(
           canPop: usePreventPop ? false : true,
